@@ -3,7 +3,7 @@ const author = document.getElementById("author");
 const pubYear = document.getElementById("pubYear");
 const status = document.getElementById("status");
 const addBook = document.getElementById("submit");
-const bookList = document.querySelector(".bookList");
+const bookList = document.querySelector(".book-list");
 
 let myLibrary = [];
 let uid = 1;
@@ -57,8 +57,22 @@ function addBookToLibrary() {
 		);
 		myLibrary.push(book);
 		uid++;
-		bookList.innerHTML += "<h1>" + book.info + "</h1>";
+		bookList.innerHTML += '<div class="bookcard">' + book.info + "</h1>";
+		modalBG.classList.remove("bg-active");
 	}
 }
 
 addBook.addEventListener("click", addBookToLibrary);
+
+// Modal
+const modalbtn = document.querySelector(".add-book");
+const modalBG = document.querySelector(".modal-bg");
+const modalClose = document.querySelector(".modal-close");
+
+modalbtn.addEventListener("click", () => {
+	modalBG.classList.add("bg-active");
+});
+
+modalClose.addEventListener("click", () => {
+	modalBG.classList.remove("bg-active");
+});

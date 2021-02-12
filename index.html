@@ -7,18 +7,47 @@
 		<title>Library</title>
 	</head>
 	<body>
-		<div class="contatiner">
-			<label for="title">Title: </label>
-			<input type="text" name="title" id="title" />
-			<label for="author">Author: </label>
-			<input type="text" name="author" id="author" />
-			<label for="pubYear">Year Published: </label>
-			<input type="text" name="pubYear" id="pubYear" />
-			<label for="status">Status: </label>
-			<input type="text" name="status" id="status" />
-			<button id="submit">Submit</button>
+		<h1 class="library">Library</h1>
+		<div class="title-line"></div>
+		<div class="book-list">
+			<div class="book-card">
+				<p>Title:</p>
+				<h2>Sample Title</h2>
+				<p>Author:</p>
+				<h4>Sample Author</h4>
+				<p>Status:</p>
+				<h4>12 of 500</h4>
+				<div class="card-footer">
+					<button class="change-status">Change Status</button>
+					<button class="remove-book">Remove</button>
+				</div>
+			</div>
+			<button class="add-book">
+				<div class="circle">
+					<div class="vertical"></div>
+					<div class="horizontal"></div>
+				</div>
+			</button>
 		</div>
-		<div class="bookList"></div>
+		<!-- Modal Start -->
+		<div class="modal-bg">
+			<div class="modal">
+				<div class="container">
+					<label for="title">Title: </label>
+					<input type="text" name="title" id="title" />
+					<label for="author">Author: </label>
+					<input type="text" name="author" id="author" />
+					<label for="pubYear">Year Published: </label>
+					<input type="text" name="pubYear" id="pubYear" />
+					<label for="status">Status: </label>
+					<input type="text" name="status" id="status" />
+				</div>
+				<button id="submit">Submit</button>
+				<span class="modal-close">X</span>
+			</div>
+		</div>
+		<!-- Modal End -->
+
 		<script src="app.js"></script>
 	</body>
 </html>
