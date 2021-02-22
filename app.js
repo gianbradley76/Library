@@ -39,7 +39,6 @@ function addBookToLibrary() {
 	console.log(initialStatus);
 
 	// Check if inputs is empty
-
 	if (
 		initialTitle === "" ||
 		initialAuthor === "" ||
@@ -56,13 +55,34 @@ function addBookToLibrary() {
 			initialStatus
 		);
 		myLibrary.push(book);
-		uid++;
-		bookList.innerHTML += '<div class="bookcard">' + book.info + "</h1>";
+		displayBook(book);
 		modalBG.classList.remove("bg-active");
+		uid++;
+
+		// Clears input fields
+		title.value = "";
+		author.value = "";
+		pubYear.value = "";
+		status.value = "";
 	}
 }
 
-addBook.addEventListener("click", addBookToLibrary);
+function displayBook(book) {
+	bookList.insertAdjacentHTML(
+		"beforeend",
+		`<div class="book-card">
+		 <p>Title:</p>
+		 <h2>${book.title}</h2>
+		 <p>Author:</p>
+		 <h4>${book.author}</h4>
+		 <p>Status:</p>
+		 <h4>${book.numPages} pages</h4>
+		 <div class="card-footer">
+		 	<button class="change-status">Change Status</button>
+		 	<button class="remove-book">Remove</button>
+		 </div></div>`
+	);
+}
 
 // Modal
 const modalbtn = document.querySelector(".add-book");
@@ -75,4 +95,12 @@ modalbtn.addEventListener("click", () => {
 
 modalClose.addEventListener("click", () => {
 	modalBG.classList.remove("bg-active");
+});
+
+addBook.addEventListener("click", addBookToLibrary);
+
+const removeBook = document.getElementById("remove-book");
+removeBook.addEventListener("click", () => {
+	console.log("remove");
+	removeBook.closest("div.book-card").remove();
 });
