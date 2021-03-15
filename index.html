@@ -1,53 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<link rel="stylesheet" href="style.css" />
 		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Library</title>
+		<link rel="stylesheet" href="style.css" />
+		<title>My Book List</title>
 	</head>
 	<body>
 		<h1 class="library">Library</h1>
 		<div class="title-line"></div>
-		<div class="book-list">
-			<div class="book-card">
-				<p>Title:</p>
-				<h2>Sample Title</h2>
-				<p>Author:</p>
-				<h4>Sample Author</h4>
-				<p>Status:</p>
-				<h4>12 of 500</h4>
-				<div class="card-footer">
-					<button class="change-status">Change Status</button>
-					<button class="remove-book" id="remove-book">Remove</button>
-				</div>
-			</div>
-			<button class="add-book" id="add-book">
+		<div class="container book-list" id="book-list">
+			<div class="add-book" id="add-book">
 				<div class="circle">
 					<div class="vertical"></div>
 					<div class="horizontal"></div>
 				</div>
-			</button>
+			</div>
 		</div>
-		<!-- Modal Start -->
+		<!-- Modal For Adding Book -->
 		<div class="modal-bg">
 			<div class="modal">
-				<div class="container">
-					<label for="title">Title: </label>
-					<input type="text" name="title" id="title" />
-					<label for="author">Author: </label>
-					<input type="text" name="author" id="author" />
-					<label for="pubYear">Date Published: </label>
-					<input type="text" name="pubYear" id="pubYear" />
-					<label for="status">Status: </label>
-					<input type="text" name="status" id="status" />
-				</div>
-				<button id="submit">Submit</button>
+				<form id="book-form">
+					<div class="form-group">
+						<label for="title">Title</label>
+						<input type="text" id="title" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="Author">Author</label>
+						<input type="text" id="author" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="isbn">ISBN</label>
+						<input type="text" id="isbn" class="form-control" />
+					</div>
+					<input type="submit" value="Add Book" class="submit-book" />
+				</form>
 				<span class="modal-close">X</span>
 			</div>
 		</div>
 		<!-- Modal End -->
-
 		<script src="app.js"></script>
 	</body>
 </html>

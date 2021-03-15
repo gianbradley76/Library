@@ -5,7 +5,6 @@
 	margin: 0;
 	box-sizing: border-box;
 }
-
 html {
 	height: 100%;
 }
@@ -16,10 +15,7 @@ body {
 		url(media/background.jpg); /* Background from https://www.pexels.com/photo/assorted-books-on-the-shelf-990432/ */
 	background-size: cover;
 	background-position: center;
-	font-family: "Lora", serif;
-}
-
-button {
+	background-attachment: fixed;
 	font-family: "Lora", serif;
 }
 
@@ -31,7 +27,7 @@ button {
 	text-align: center;
 	font-size: 60px;
 	font-family: "Lora", serif;
-	z-index: 2;
+	z-index: -1;
 }
 
 .title-line {
@@ -42,19 +38,11 @@ button {
 	bottom: 10px;
 	background-color: #a0522d;
 	border-radius: 5px;
-	z-index: 1;
+	z-index: ;
 }
+/* End Title */
 
-.book-list {
-	width: 80vw;
-	margin: auto;
-	margin-top: 5vh;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	align-items: center;
-}
-
+/* Card for Add Book */
 .add-book {
 	margin: 20px;
 	width: 200px;
@@ -63,9 +51,12 @@ button {
 	border: 2px solid #a0522d;
 	border-radius: 10px;
 	cursor: pointer;
+	box-shadow: 15px 15px 15px 3px rgba(0, 0, 0, 0.75);
 }
 
 .circle {
+	position: relative;
+	top: 25%;
 	margin: auto;
 	width: 150px;
 	height: 150px;
@@ -90,7 +81,19 @@ button {
 	top: 15px;
 	background-color: #b38b6d;
 }
+/* End card for add book */
 
+.book-list {
+	width: 80vw;
+	margin: auto;
+	margin-top: 5vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+/* Book cards */
 .book-card {
 	position: relative;
 	color: #b38b6d;
@@ -101,7 +104,9 @@ button {
 	background-color: rgb(27, 30, 43);
 	border: 2px solid #a0522d;
 	border-radius: 10px;
+	box-shadow: 10px 10px 15px 3px rgba(0, 0, 0, 0.75);
 }
+
 .card-footer {
 	position: absolute;
 	bottom: 30px;
@@ -123,9 +128,10 @@ button {
 	background-color: #0f3c00;
 }
 
-.remove-book {
+.delete-book {
 	background-color: #5b342e;
 }
+/* End book cards */
 
 /* Modal */
 .modal-bg {
@@ -134,7 +140,7 @@ button {
 	height: 100vh;
 	top: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.25);
+	background-color: rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -151,7 +157,7 @@ button {
 .modal {
 	position: relative;
 	width: 500px;
-	height: 30%;
+	padding: 30px 0;
 	background-color: rgb(27, 30, 43);
 	border: 2px solid #a0522d;
 	border-radius: 10px;
@@ -169,23 +175,25 @@ button {
 	cursor: pointer;
 	color: #b38b6d;
 }
+/* End Modal */
 
-.modal button {
-	height: 50px;
-	width: 84px;
-	background-color: #0f3c00;
+/* Inputs within modal */
+#book-form {
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	grid-template-columns: auto 1fr;
+}
+
+.form-group {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	color: #b38b6d;
 }
 
-.modal label {
-	text-align: right;
-	color: #b38b6d;
-}
-
-.modal input {
-	position: relative;
+.form-group input {
 	height: 30px;
-	left: 10px;
 	margin: 5px;
 	padding: 5px;
 	border: none;
@@ -194,11 +202,20 @@ button {
 	font-weight: bold;
 }
 
-/* Inputs within modal */
-.container {
-	height: 50%;
-	display: grid;
-	align-items: center;
-	justify-content: space-between;
-	grid-template-columns: auto 1fr;
+.submit-book {
+	position: relative;
+	margin: 5px;
+	padding: 5px;
+	height: 30px;
+	width: 45%;
+	align-self: center;
+	font-family: "Lora", serif;
+	font-weight: bold;
+	border-style: none;
+	background-color: none;
+	color: #b38b6d;
+	background-color: #0f3c00;
+	border-radius: 5px;
+	cursor: pointer;
 }
+/* End inputs within modal */
