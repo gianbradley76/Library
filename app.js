@@ -1,8 +1,9 @@
 // Book Class: Represents a Book
 class Book {
-	constructor(title, author, isbn) {
+	constructor(title, author, status, isbn) {
 		this.title = title;
 		this.author = author;
+		this.status = status;
 		this.isbn = isbn;
 	}
 }
@@ -29,7 +30,10 @@ class UI {
 			<p>Author:</p>
 			<h4>${book.author}</h4>
 			<p>Status:</p>
-			<h4>${book.isbn}</h4>
+			<h4>${book.status}</h4>
+			<br>
+			<h6>ISBN:</h6>
+			<h6>${book.isbn}</h6>
 			<div class="card-footer">
 				<button class="change-status">Change Status</button>
 				<button class="delete-book">Remove</button>
@@ -40,9 +44,7 @@ class UI {
 	}
 
 	static deleteBook(el) {
-		if (el.classList.contains("delete-book")) {
-			el.parentElement.parentElement.remove();
-		}
+		el.parentElement.parentElement.remove();
 	}
 
 	// static showAlertMessage(message, className) {
@@ -54,7 +56,7 @@ class UI {
 	// 	const form = document.querySelector("#book-form");
 	// 	container.insertBefore(div, form);
 
-	// 	// Alert vanishes in 3 seconds
+	// Alert vanishes in 3 seconds
 	// 	setTimeout(() => {
 	// 		document.querySelector(".alert").remove();
 	// 	}, 3000);
@@ -111,14 +113,15 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 	// Get form values
 	const title = document.querySelector("#title").value;
 	const author = document.querySelector("#author").value;
+	const status = document.querySelector('input[name="status"]:checked').value;
 	const isbn = document.querySelector("#isbn").value;
 
 	// Validate
 	if (title === "" || author === "" || isbn === "") {
-		UI.showAlertMessage("Please fill in all fields", "danger");
+		alert("Please fill in all fields");
 	} else {
 		// Instatiate book
-		const book = new Book(title, author, isbn);
+		const book = new Book(title, author, status, isbn);
 		// console.log(book);
 
 		// Add Book to UI
@@ -133,6 +136,9 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 		// Close modal
 		modalBG.classList.remove("bg-active");
 
+		const statusTitle = document.querySelector(".selected");
+		statusTitle.innerHTML = "Select Status";
+
 		// Clear Fields
 		UI.clearFields();
 	}
@@ -140,14 +146,14 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 
 // Event: Remove a Book
 document.querySelector(".book-list").addEventListener("click", (e) => {
-	// Remove book from UI
-	UI.deleteBook(e.target);
+	if (e.target.classList.contains("delete-book")) {
+		// Remove book from UI
+		UI.deleteBook(e.target);
 
-	// Remove book form storage
-	Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-
-	// Show success meassge
-	// UI.showAlertMessage("Book Removed", "success");
+		// Remove book form storage
+		Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+		// Show success meassge
+	}
 });
 
 // Modal Events
@@ -161,4 +167,21 @@ modalbtn.addEventListener("click", () => {
 
 modalClose.addEventListener("click", () => {
 	modalBG.classList.remove("bg-active");
+});
+
+const selected = document.querySelector(".selected");
+const optionsContainer = document.querySelector(".options-container");
+
+const optionsList = document.querySelectorAll(".option");
+
+selected.addEventListener("click", () => {
+	optionsContainer.classList.toggle("active");
+});
+
+optionsList.forEach((opt) => {
+	opt.addEventListener("click", () => {
+		opt.setAttribute("checked", "checked");
+		selected.innerHTML = opt.querySelector("label").innerHTML;
+		optionsContainer.classList.remove("active");
+	});
 });
