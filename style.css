@@ -132,51 +132,6 @@ body {
 }
 /* End book cards */
 
-/* Modal */
-.modal-bg {
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 0s ease-in-out, opacity 0s ease-in-out;
-}
-
-.bg-active {
-	visibility: visible;
-	opacity: 1;
-}
-
-.modal {
-	position: relative;
-	width: 500px;
-
-	padding: 30px 0;
-	background-color: rgb(27, 30, 43);
-	border: 2px solid #a0522d;
-	border-radius: 10px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-}
-
-.modal-close {
-	position: absolute;
-	top: 10px;
-	right: 15px;
-	font-weight: bold;
-	cursor: pointer;
-	color: #b38b6d;
-}
-/* End Modal */
-
 /* Inputs within modal */
 #book-form {
 	height: 50%;
@@ -203,97 +158,44 @@ body {
 }
 
 .status-group {
-	margin: 20px 0;
 	display: flex;
 	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-between;
+	margin: 10px 0;
+}
+
+#status-label {
+	color: #b38b6d;
+	margin-bottom: 10px;
+}
+
+.radio {
+	display: inline-flex;
 	overflow: hidden;
 	border-radius: 15px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-	color: #b38b6d;
 }
 
-.select-box {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-}
-
-.select-box .options-container {
-	background-color: rgb(41, 45, 62);
-	position: relative;
-	color: #b38b6d;
-	max-height: 0;
-	width: 186px;
-	margin: 5px 10px;
-	margin-top: 0;
-	opacity: 0;
-	transition: all 0.4s;
-	overflow: hidden;
-
-	order: 1;
-}
-
-.selected {
-	background-color: rgb(41, 45, 62);
-	box-shadow: 0 0 5px rgb(27, 30, 43);
-	height: 30px;
-	margin: 5px 10px;
-	margin-bottom: 0;
-	padding: 5px;
-	width: 186px;
-	border-bottom: none;
-	order: 0;
-	align-self: center;
-	justify-self: center;
-}
-
-.selected::after {
-	position: absolute;
-	content: "";
-	background: url(media/arrow-down.svg);
-	background-size: contain;
-	background-repeat: no-repeat;
-
-	position: absolute;
-	height: 32px;
-	width: 32px;
-	right: 10px;
-	top: 6px;
-	padding: 0;
-	margin: 0;
-	transition: all 0.4s;
-}
-
-.select-box .options-container.active {
-	max-height: 240px;
-	opacity: 1;
-	overflow-y: scroll;
-}
-
-.select-box .options-container.active + .selected::after {
-	box-shadow: 0 0 5px rgb(27, 30, 43);
-	transform: rotateX(180deg);
-}
-.select-box .options-container::-webkit-scrollbar {
+.radio-input {
 	display: none;
 }
-
-.select-box .option,
-.selected {
-	padding: 5px;
+.radio-label {
+	padding: 8px 14px;
+	font-size: 14px;
+	font-family: "Lora", serif;
+	color: #b38b6d;
+	background-color: rgb(41, 45, 62);
 	cursor: pointer;
+	transition: background 0.2s;
 }
 
-.select-box label {
-	cursor: pointer;
+.radio-label:not(:last-of-type) {
+	border-right: 1px solid rgb(27, 30, 43);
 }
 
-.select-box .option:hover {
-	background: #414b57;
-}
-
-.select-box .option .radio {
-	display: none;
+.radio-input:checked + .radio-label {
+	background: rgb(27, 30, 43);
 }
 
 .submit-book {
@@ -313,3 +215,47 @@ body {
 	cursor: pointer;
 }
 /* End inputs within modal */
+
+/* Modal */
+.modal-bg {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s ease-in-out, opacity 0s ease-in-out;
+}
+
+.bg-active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.modal {
+	position: relative;
+	width: 500px;
+	padding: 30px 0;
+	background-color: rgb(27, 30, 43);
+	border: 2px solid #a0522d;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.modal-close {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	color: #b38b6d;
+}
+/* End Modal */

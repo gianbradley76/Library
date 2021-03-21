@@ -66,6 +66,11 @@ class UI {
 		document.querySelector("#title").value = "";
 		document.querySelector("#author").value = "";
 		document.querySelector("#isbn").value = "";
+		const radios = document.getElementsByName("status");
+
+		radios.forEach((radio) => {
+			radio.checked = false;
+		});
 	}
 }
 
@@ -113,11 +118,23 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 	// Get form values
 	const title = document.querySelector("#title").value;
 	const author = document.querySelector("#author").value;
-	const status = document.querySelector('input[name="status"]:checked').value;
 	const isbn = document.querySelector("#isbn").value;
 
+	let radios = document.getElementsByName("status");
+	let status = null;
+
+	for (var i = 0, length = radios.length; i < length; i++) {
+		if (radios[i].checked) {
+			// do whatever you want with the checked radio
+			status = radios[i].value;
+
+			// only one radio can be logically checked, don't check the rest
+			break;
+		}
+	}
+
 	// Validate
-	if (title === "" || author === "" || isbn === "") {
+	if (title === "" || author === "" || isbn === "" || status === null) {
 		alert("Please fill in all fields");
 	} else {
 		// Instatiate book
@@ -136,11 +153,19 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 		// Close modal
 		modalBG.classList.remove("bg-active");
 
-		const statusTitle = document.querySelector(".selected");
-		statusTitle.innerHTML = "Select Status";
-
 		// Clear Fields
 		UI.clearFields();
+	}
+});
+
+// Change Book Status
+document.querySelector(".book-list").addEventListener("click", (e) => {
+	if (e.target.classList.contains("change-status")) {
+		console.log(e.target);
+
+		// Remove book form storage
+		// Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+		// Show success meassge
 	}
 });
 
@@ -157,6 +182,7 @@ document.querySelector(".book-list").addEventListener("click", (e) => {
 });
 
 // Modal Events
+// Adds Book
 const modalbtn = document.querySelector(".add-book");
 const modalBG = document.querySelector(".modal-bg");
 const modalClose = document.querySelector(".modal-close");
@@ -166,22 +192,6 @@ modalbtn.addEventListener("click", () => {
 });
 
 modalClose.addEventListener("click", () => {
+	UI.clearFields();
 	modalBG.classList.remove("bg-active");
-});
-
-const selected = document.querySelector(".selected");
-const optionsContainer = document.querySelector(".options-container");
-
-const optionsList = document.querySelectorAll(".option");
-
-selected.addEventListener("click", () => {
-	optionsContainer.classList.toggle("active");
-});
-
-optionsList.forEach((opt) => {
-	opt.addEventListener("click", () => {
-		opt.setAttribute("checked", "checked");
-		selected.innerHTML = opt.querySelector("label").innerHTML;
-		optionsContainer.classList.remove("active");
-	});
 });
