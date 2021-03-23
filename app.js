@@ -47,21 +47,6 @@ class UI {
 		el.parentElement.parentElement.remove();
 	}
 
-	// static showAlertMessage(message, className) {
-	// 	const div = document.createElement("div");
-	// 	div.className = `alert alert-${className}`;
-	// 	div.appendChild(document.createTextNode(message));
-
-	// 	const container = document.querySelector(".container");
-	// 	const form = document.querySelector("#book-form");
-	// 	container.insertBefore(div, form);
-
-	// Alert vanishes in 3 seconds
-	// 	setTimeout(() => {
-	// 		document.querySelector(".alert").remove();
-	// 	}, 3000);
-	// }
-
 	static clearFields() {
 		document.querySelector("#title").value = "";
 		document.querySelector("#author").value = "";
@@ -147,9 +132,6 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 		// Add book to storage
 		Store.addBook(book);
 
-		// Show success meassge
-		// UI.showAlertMessage("Book Added", "success");
-
 		// Close modal
 		modalBG.classList.remove("bg-active");
 
@@ -159,14 +141,18 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 });
 
 // Change Book Status
+const statusModalBG = document.querySelector(".status-modal-bg");
+const statusModalClose = document.querySelector(".status-modal-close");
+
 document.querySelector(".book-list").addEventListener("click", (e) => {
 	if (e.target.classList.contains("change-status")) {
-		console.log(e.target);
-
-		// Remove book form storage
-		// Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-		// Show success meassge
+		const isbn = e.target.parentElement.previousElementSibling.textContent;
+		statusModalBG.classList.add("bg-active");
 	}
+});
+
+statusModalClose.addEventListener("click", () => {
+	statusModalBG.classList.remove("bg-active");
 });
 
 // Event: Remove a Book

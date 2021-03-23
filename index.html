@@ -21,40 +21,43 @@
 		</div>
 
 		<!-- Modal for changing book status -->
-		<!-- <div class="modal-bg">
-			<div class="modal">
-				<div class="form-group status-group">
-					<label id="status-label" for="#">Status</label>
-					<div class="radio">
-						<input
-							class="radio-input"
-							type="radio"
-							name="status"
-							id="to-read"
-							value="To Read"
-						/>
-						<label class="radio-label" for="to-read">To Read</label>
-						<input
-							class="radio-input"
-							type="radio"
-							name="status"
-							id="on-going"
-							value="On-Going"
-						/>
-						<label class="radio-label" for="on-going">On-Going</label>
-						<input
-							class="radio-input"
-							type="radio"
-							name="status"
-							id="finished"
-							value="Finished"
-						/>
-						<label class="radio-label" for="finished">Finished</label>
-					</div>
-					<span class="modal-close">X</span>
+		<div class="status-modal-bg">
+			<div class="status-modal">
+				<div class="status-group">
+					<label class="status-label" for="#">Status</label>
+					<form action="">
+						<div class="radio">
+							<input
+								class="radio-input"
+								type="radio"
+								name="change-status"
+								id="change-to-read"
+								value="To Read"
+							/>
+							<label class="radio-label" for="change-to-read">To Read</label>
+							<input
+								class="radio-input"
+								type="radio"
+								name="change-status"
+								id="change-on-going"
+								value="On-Going"
+							/>
+							<label class="radio-label" for="change-on-going">On-Going</label>
+							<input
+								class="radio-input"
+								type="radio"
+								name="change-status"
+								id="change-finished"
+								value="Finished"
+							/>
+							<label class="radio-label" for="change-finished">Finished</label>
+						</div>
+						<input type="submit" class="confirm-change-status" />
+					</form>
+					<span class="status-modal-close">X</span>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<!-- End of modal for changing book status -->
 
 		<!-- Modal For Adding Book -->
@@ -102,7 +105,7 @@
 							<label class="radio-label" for="finished">Finished</label>
 						</div>
 					</div>
-					<input type="submit" value="Add Book" class="submit-book" />
+					<input type="submit" class="submit-book" />
 				</form>
 				<span class="modal-close">X</span>
 			</div>

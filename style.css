@@ -139,7 +139,8 @@ body {
 	flex-direction: column;
 }
 
-.form-group {
+.form-group,
+.status-group {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -165,7 +166,7 @@ body {
 	margin: 10px 0;
 }
 
-#status-label {
+.status-label {
 	color: #b38b6d;
 	margin-bottom: 10px;
 }
@@ -198,7 +199,8 @@ body {
 	background: rgb(27, 30, 43);
 }
 
-.submit-book {
+.submit-book,
+.confirm-change-status {
 	position: relative;
 	margin: 5px;
 	padding: 5px;
@@ -217,7 +219,8 @@ body {
 /* End inputs within modal */
 
 /* Modal */
-.modal-bg {
+.modal-bg,
+.status-modal-bg {
 	position: fixed;
 	width: 100%;
 	height: 100vh;
@@ -237,7 +240,8 @@ body {
 	opacity: 1;
 }
 
-.modal {
+.modal,
+.status-modal {
 	position: relative;
 	width: 500px;
 	padding: 30px 0;
@@ -250,7 +254,8 @@ body {
 	align-items: center;
 }
 
-.modal-close {
+.modal-close,
+.status-modal-close {
 	position: absolute;
 	top: 10px;
 	right: 15px;
