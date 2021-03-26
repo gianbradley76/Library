@@ -26,13 +26,13 @@ class UI {
 		row.className = "book-card";
 
 		row.innerHTML = `			<p>Title:</p>
-			<h2>${book.title}</h2>
+			<h2 class="title">${book.title}</h2>
 			<p>Author:</p>
-			<h4>${book.author}</h4>
+			<h4 class="author">${book.author}</h4>
 			<p>Status:</p>
-			<h4>${book.status}</h4>
+			<h4 class="status">${book.status}</h4>
 			<br>
-			<h6>ISBN:</h6>
+			<h6 class="isbn">ISBN:</h6>
 			<h6>${book.isbn}</h6>
 			<div class="card-footer">
 				<button class="change-status">Change Status</button>
@@ -45,6 +45,19 @@ class UI {
 
 	static deleteBook(el) {
 		el.parentElement.parentElement.remove();
+	}
+
+	static changeStatus(el) {
+		let status = el.parentNode.parentNode.children[5];
+
+		if (status.textContent === "To Read") {
+			status.innerHTML = "On-Going";
+		} else if (status.textContent === "On-Going") {
+			status.innerHTML = "Finished";
+		} else if (status.textContent === "Finished") {
+			status.innerHTML = "To Read";
+		}
+		console.log(status);
 	}
 
 	static clearFields() {
@@ -76,6 +89,24 @@ class Store {
 		const books = Store.getBooks();
 
 		books.push(book);
+
+		localStorage.setItem("books", JSON.stringify(books));
+	}
+
+	static changeStatus(isbn) {
+		const books = Store.getBooks();
+		books.forEach((book) => {
+			if (book.isbn === isbn) {
+				if (book.status === "To Read") {
+					book.status = "On-Going";
+				} else if (book.status === "On-Going") {
+					book.status = "Finished";
+				} else if (book.status === "Finished") {
+					book.status = "To Read";
+				}
+			}
+		});
+		console.log(books);
 
 		localStorage.setItem("books", JSON.stringify(books));
 	}
@@ -141,18 +172,14 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 });
 
 // Change Book Status
-const statusModalBG = document.querySelector(".status-modal-bg");
-const statusModalClose = document.querySelector(".status-modal-close");
-
 document.querySelector(".book-list").addEventListener("click", (e) => {
 	if (e.target.classList.contains("change-status")) {
-		const isbn = e.target.parentElement.previousElementSibling.textContent;
-		statusModalBG.classList.add("bg-active");
+		UI.changeStatus(e.target);
+		// console.log(e.target.parentElement.previousElementSibling.textContent);
+		Store.changeStatus(
+			e.target.parentElement.previousElementSibling.textContent
+		);
 	}
-});
-
-statusModalClose.addEventListener("click", () => {
-	statusModalBG.classList.remove("bg-active");
 });
 
 // Event: Remove a Book
