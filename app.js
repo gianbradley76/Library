@@ -106,7 +106,6 @@ class Store {
 				}
 			}
 		});
-		console.log(books);
 
 		localStorage.setItem("books", JSON.stringify(books));
 	}
@@ -174,8 +173,10 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 // Change Book Status
 document.querySelector(".book-list").addEventListener("click", (e) => {
 	if (e.target.classList.contains("change-status")) {
+		// Change Book status in UI
 		UI.changeStatus(e.target);
-		// console.log(e.target.parentElement.previousElementSibling.textContent);
+
+		// Change Book status in local storage
 		Store.changeStatus(
 			e.target.parentElement.previousElementSibling.textContent
 		);
@@ -190,7 +191,6 @@ document.querySelector(".book-list").addEventListener("click", (e) => {
 
 		// Remove book form storage
 		Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-		// Show success meassge
 	}
 });
 
